@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosnovkaRC.ServerApi", "SosnovkaRC.ServerApi\SosnovkaRC.ServerApi.csproj", "{FF96F347-4A18-4369-8856-494CAD4C4BCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosnovkaRC.Domain", "SosnovkaRC.Domain\SosnovkaRC.Domain.csproj", "{2E8EABF7-3531-47E2-87C4-FCD8712CEEC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosnovkaRC.Repository", "SosnovkaRC.Repository\SosnovkaRC.Repository.csproj", "{080484C2-710F-4150-B17D-65D3D9ADB050}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosnovkaRC.BusinessLogic", "SosnovkaRC.BusinessLogic\SosnovkaRC.BusinessLogic.csproj", "{FD661A71-DEAA-4E10-87D0-4D8B1F4030BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SosnovkaRC.Utils", "SosnovkaRC.Utils", "{0039F01A-5D81-499A-B8FE-CDD70F136549}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosnovkaRC.Utils", "SosnovkaRC.Utils\SosnovkaRC.Utils.csproj", "{B1FC23D6-3CF1-4AF5-AE25-2B94F7AB48F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosnovkaRC.DependencyUtils", "SosnovkaRC.DependecyUtils\SosnovkaRC.DependencyUtils.csproj", "{DF353401-5B72-4B8A-A856-17813797238F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF96F347-4A18-4369-8856-494CAD4C4BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF96F347-4A18-4369-8856-494CAD4C4BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF96F347-4A18-4369-8856-494CAD4C4BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF96F347-4A18-4369-8856-494CAD4C4BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E8EABF7-3531-47E2-87C4-FCD8712CEEC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E8EABF7-3531-47E2-87C4-FCD8712CEEC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E8EABF7-3531-47E2-87C4-FCD8712CEEC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E8EABF7-3531-47E2-87C4-FCD8712CEEC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080484C2-710F-4150-B17D-65D3D9ADB050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080484C2-710F-4150-B17D-65D3D9ADB050}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080484C2-710F-4150-B17D-65D3D9ADB050}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080484C2-710F-4150-B17D-65D3D9ADB050}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD661A71-DEAA-4E10-87D0-4D8B1F4030BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD661A71-DEAA-4E10-87D0-4D8B1F4030BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD661A71-DEAA-4E10-87D0-4D8B1F4030BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD661A71-DEAA-4E10-87D0-4D8B1F4030BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1FC23D6-3CF1-4AF5-AE25-2B94F7AB48F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1FC23D6-3CF1-4AF5-AE25-2B94F7AB48F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1FC23D6-3CF1-4AF5-AE25-2B94F7AB48F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1FC23D6-3CF1-4AF5-AE25-2B94F7AB48F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF353401-5B72-4B8A-A856-17813797238F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF353401-5B72-4B8A-A856-17813797238F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF353401-5B72-4B8A-A856-17813797238F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF353401-5B72-4B8A-A856-17813797238F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1FC23D6-3CF1-4AF5-AE25-2B94F7AB48F1} = {0039F01A-5D81-499A-B8FE-CDD70F136549}
+		{DF353401-5B72-4B8A-A856-17813797238F} = {0039F01A-5D81-499A-B8FE-CDD70F136549}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89F20C2C-26A3-40A5-B573-DDEAB8DB575E}
+	EndGlobalSection
+EndGlobal
