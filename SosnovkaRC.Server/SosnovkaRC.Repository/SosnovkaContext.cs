@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SosnovkaRC.Domain.Models;
+using SosnovkaRC.Domain.Models.Athletes;
 
 namespace SosnovkaRC.Repository;
 
