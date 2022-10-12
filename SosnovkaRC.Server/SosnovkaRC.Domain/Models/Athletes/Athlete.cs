@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SosnovkaRC.Domain.Models.Races;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SosnovkaRC.Domain.Models;
+namespace SosnovkaRC.Domain.Models.Athletes;
 
 [Table("Athletes")]
 public class Athlete : Entity
@@ -18,4 +19,5 @@ public class Athlete : Entity
     public DateTime JoiningDate { get; set; }
     public DateTime? LeavingDate { get; set; }
     public string? Bio { get; set; }
+    public List<Result> Results { get; set; } = new(0);
 }
