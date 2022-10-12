@@ -19,6 +19,5 @@ public class Athlete : Entity
     public DateTime JoiningDate { get; set; }
     public DateTime? LeavingDate { get; set; }
     public string? Bio { get; set; }
-
     public List<Result> Results { get; set; } = new(0);
 }
