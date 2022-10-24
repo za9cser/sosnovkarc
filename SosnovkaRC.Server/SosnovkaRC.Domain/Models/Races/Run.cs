@@ -10,12 +10,18 @@ public class Run : Entity
     [MaxLength(100)]
     public string? Name { get; set; }
 
+    /// <summary>
+    ///     В метрах
+    /// </summary>
     public double Distance { get; set; }
+
     public TimeSpan Duration { get; set; }
 
     public bool IsDistanceRun { get; set; }
 
     public bool IsOutdoor { get; set; } = true;
+
+    public double? FactDistance { get; set; }
 
     public List<Result> Results { get; set; } = new(0);
 

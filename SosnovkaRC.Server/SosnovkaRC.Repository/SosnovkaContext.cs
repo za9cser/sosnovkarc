@@ -17,8 +17,13 @@ public class SosnovkaContext : DbContext
     public DbSet<AthleteIdentifier> AthleteIdentifiers { get; set; } = null!;
     public DbSet<Platform> Platforms { get; set; } = null!;
 
-    public SosnovkaContext(DbContextOptions options) : base(options)
+    public SosnovkaContext(DbContextOptions<SosnovkaContext> options) : base(options)
     {
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.UseSerialColumns();
     }
 }
