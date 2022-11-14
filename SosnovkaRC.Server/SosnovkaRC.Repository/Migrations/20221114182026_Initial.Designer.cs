@@ -12,8 +12,8 @@ using SosnovkaRC.Repository;
 namespace SosnovkaRC.Repository.Migrations
 {
     [DbContext(typeof(SosnovkaContext))]
-    [Migration("20221024180056_FactDistance")]
-    partial class FactDistance
+    [Migration("20221114182026_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

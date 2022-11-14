@@ -15,7 +15,7 @@ namespace SosnovkaRC.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     DoB = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -33,7 +33,7 @@ namespace SosnovkaRC.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     CityId = table.Column<string>(type: "text", nullable: false),
                     CityName = table.Column<string>(type: "text", nullable: false)
@@ -44,11 +44,24 @@ namespace SosnovkaRC.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Platforms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Platforms", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Races",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CompetitionId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
@@ -66,17 +79,45 @@ namespace SosnovkaRC.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AthleteIdentifiers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    AthleteId = table.Column<int>(type: "integer", nullable: false),
+                    Identifier = table.Column<string>(type: "text", nullable: false),
+                    PlatformId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AthleteIdentifiers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AthleteIdentifiers_Athletes_AthleteId",
+                        column: x => x.AthleteId,
+                        principalTable: "Athletes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AthleteIdentifiers_Platforms_PlatformId",
+                        column: x => x.PlatformId,
+                        principalTable: "Platforms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Runs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     RaceId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     Distance = table.Column<double>(type: "double precision", nullable: false),
                     Duration = table.Column<TimeSpan>(type: "interval", nullable: false),
                     IsDistanceRun = table.Column<bool>(type: "boolean", nullable: false),
-                    IsOutdoor = table.Column<bool>(type: "boolean", nullable: false)
+                    IsOutdoor = table.Column<bool>(type: "boolean", nullable: false),
+                    FactDistance = table.Column<double>(type: "double precision", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,7 +135,7 @@ namespace SosnovkaRC.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     RunId = table.Column<int>(type: "integer", nullable: false),
                     FinishTime = table.Column<TimeSpan>(type: "interval", nullable: false),
                     FinishDistance = table.Column<double>(type: "double precision", nullable: false),
@@ -121,7 +162,7 @@ namespace SosnovkaRC.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     ResultId = table.Column<int>(type: "integer", nullable: false),
                     SplitTime = table.Column<TimeSpan>(type: "interval", nullable: false),
                     SplitDistance = table.Column<double>(type: "double precision", nullable: false)
@@ -136,6 +177,16 @@ namespace SosnovkaRC.Repository.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AthleteIdentifiers_AthleteId",
+                table: "AthleteIdentifiers",
+                column: "AthleteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AthleteIdentifiers_PlatformId",
+                table: "AthleteIdentifiers",
+                column: "PlatformId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Races_CompetitionId",
@@ -166,7 +217,13 @@ namespace SosnovkaRC.Repository.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AthleteIdentifiers");
+
+            migrationBuilder.DropTable(
                 name: "Splits");
+
+            migrationBuilder.DropTable(
+                name: "Platforms");
 
             migrationBuilder.DropTable(
                 name: "Results");

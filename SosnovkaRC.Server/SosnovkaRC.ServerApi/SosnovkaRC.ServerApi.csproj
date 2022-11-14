@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SosnovkaRC.DependecyUtils\SosnovkaRC.DependencyUtils.csproj" />
   </ItemGroup>
 
