@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SosnovkaRC.BusinessLogic\SosnovkaRC.BusinessLogic.csproj" />
     <ProjectReference Include="..\SosnovkaRC.Repository\SosnovkaRC.Repository.csproj" />
   </ItemGroup>
 

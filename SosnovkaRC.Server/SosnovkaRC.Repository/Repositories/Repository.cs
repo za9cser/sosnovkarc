@@ -10,6 +10,7 @@ public interface IRepository<T> where T : Entity
     void Update(T entity);
     void Delete(int id);
     void Delete(T entity);
+    void Save();
 }
 
 public class Repository<T> : IRepository<T> where T : Entity
@@ -34,9 +35,17 @@ public class Repository<T> : IRepository<T> where T : Entity
         return query.ToArray();
     }
 
-    public void Add(T entity) => Context.Set<T>().Add(entity);
+    public void Add(T entity)
+    {
+        Context.Set<T>().Add(entity);
+        Save();
+    }
 
-    public void Update(T entity) => Context.Set<T>().Update(entity);
+    public void Update(T entity)
+    {
+        Context.Set<T>().Update(entity);
+        Save();
+    }
 
     public void Delete(int id)
     {
@@ -45,5 +54,11 @@ public class Repository<T> : IRepository<T> where T : Entity
             Delete(entity);
     }
 
-    public void Delete(T entity) => Context.Set<T>().Remove(entity);
+    public void Delete(T entity)
+    {
+        Context.Set<T>().Remove(entity);
+        Save();
+    }
+
+    public void Save() => Context.SaveChanges();
 }

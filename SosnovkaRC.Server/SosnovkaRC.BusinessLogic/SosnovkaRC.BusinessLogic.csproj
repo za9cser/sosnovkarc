@@ -12,6 +12,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SosnovkaRC.Domain\SosnovkaRC.Domain.csproj" />
+    <ProjectReference Include="..\SosnovkaRC.Repository\SosnovkaRC.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="sosnovka.xlsx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
