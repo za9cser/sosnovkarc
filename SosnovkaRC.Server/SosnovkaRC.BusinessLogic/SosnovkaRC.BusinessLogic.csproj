@@ -1,13 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <PackageReference Include="EPPlus" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SosnovkaRC.Domain\SosnovkaRC.Domain.csproj" />
+    <ProjectReference Include="..\SosnovkaRC.Repository\SosnovkaRC.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="sosnovka.xlsx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
