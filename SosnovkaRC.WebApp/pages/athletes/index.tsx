@@ -1,16 +1,34 @@
-import { useState } from "react";
+import { MDBRow } from "mdb-react-ui-kit";
+import { GetServerSideProps } from "next";
 
-ng
+type AthletesModel = {
+    athletes: [
+        {
+            id: number;
+            firstName: string;
+            lastName: string;
+        }
+    ];
+};
 
-const Athletes = () => {
-
-    
-
+const Athletes = ({ athletes }: AthletesModel) => {
     return (
         <div>
-            Enter
+            {athletes.map(({ firstName, lastName }, key) => (
+                <MDBRow key={key}>
+                    {firstName} {lastName}
+                </MDBRow>
+            ))}
         </div>
     );
-}
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    return {
+        props: {
+            athletes: null,
+        },
+    };
+};
 
 export default Athletes;
