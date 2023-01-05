@@ -1,16 +1,17 @@
-﻿using SosnovkaRC.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SosnovkaRC.Domain.Models;
 
 namespace SosnovkaRC.Repository.Repositories;
 
 public interface IRepository<T> where T : Entity
 {
-    T? GetById(int id);
-    T[] Get(int skip = 0, int? take = null);
-    void Add(T entity);
-    void Update(T entity);
-    void Delete(int id);
-    void Delete(T entity);
-    void Save();
+    Task<T?> GetByIdAsync(int id);
+    Task<T[]> GetAsync(int skip = 0, int? take = null);
+    Task AddAsync(T entity);
+    Task UpdateAsync(T entity);
+    Task DeleteAsync(int id);
+    Task DeleteAsync(T entity);
+    Task SaveAsync();
 }
 
 public class Repository<T> : IRepository<T> where T : Entity
@@ -22,9 +23,9 @@ public class Repository<T> : IRepository<T> where T : Entity
         Context = context;
     }
 
-    public T? GetById(int id) => Context.Set<T>().FirstOrDefault(e => e.Id == id);
+    public async Task<T?> GetByIdAsync(int id) => await Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
 
-    public T[] Get(int skip = 0, int? take = null)
+    public async Task<T[]> GetAsync(int skip = 0, int? take = null)
     {
         IQueryable<T> query = Context.Set<T>();
         if (skip > 0)
@@ -32,33 +33,33 @@ public class Repository<T> : IRepository<T> where T : Entity
 
         if (take > 0)
             query = query.Take(take.Value);
-        return query.ToArray();
+        return await query.ToArrayAsync();
     }
 
-    public void Add(T entity)
+    public async Task AddAsync(T entity)
     {
-        Context.Set<T>().Add(entity);
-        Save();
+        await Context.Set<T>().AddAsync(entity);
+        await SaveAsync();
     }
 
-    public void Update(T entity)
+    public async Task UpdateAsync(T entity)
     {
         Context.Set<T>().Update(entity);
-        Save();
+        await SaveAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        var entity = GetById(id);
+        var entity = await GetByIdAsync(id);
         if (entity != null)
-            Delete(entity);
+            await DeleteAsync(entity);
     }
 
-    public void Delete(T entity)
+    public async Task DeleteAsync(T entity)
     {
         Context.Set<T>().Remove(entity);
-        Save();
+        await SaveAsync();
     }
 
-    public void Save() => Context.SaveChanges();
+    public async Task SaveAsync() => await Context.SaveChangesAsync();
 }

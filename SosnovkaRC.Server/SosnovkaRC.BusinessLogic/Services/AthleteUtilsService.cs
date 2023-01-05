@@ -7,7 +7,7 @@ namespace SosnovkaRC.BusinessLogic.Services;
 
 public interface IAthletesUtilsService
 {
-    Athlete[] InitFromFile();
+    Task<Athlete[]> InitFromFile();
 }
 
 public class AthletesUtilsService : IAthletesUtilsService
@@ -19,7 +19,7 @@ public class AthletesUtilsService : IAthletesUtilsService
         _athletesRepository = athletesRepository;
     }
 
-    public Athlete[] InitFromFile()
+    public async Task<Athlete[]> InitFromFile()
     {
         using var fileStream = new FileStream("../SosnovkaRC.BusinessLogic/sosnovka.xlsx", FileMode.Open);
         using var package = new ExcelPackage(fileStream);
@@ -42,7 +42,7 @@ public class AthletesUtilsService : IAthletesUtilsService
             if (leavingDate != null) athlete.LeavingDate = DateTime.Parse(leavingDate);
             var id = Regex.Match(cells[row, 5].Value.ToString(), @"(user|runner)\/\d+").Value;
             athlete.Identifiers.Add(new() { Identifier = id, PlatformId = 1 });
-            _athletesRepository.Add(athlete);
+            await _athletesRepository.AddAsync(athlete);
         }
 
         return athletes;

@@ -15,8 +15,8 @@ public class UtilsController : Controller
     }
 
     [HttpGet]
-    public IActionResult InitAthletesFromFile()
+    public async Task<IActionResult> InitAthletesFromFile()
     {
-        return Ok(_athletesUtilsService.InitFromFile());
+        return Ok(await _athletesUtilsService.InitFromFile());
     }
 }

@@ -20,5 +20,6 @@ public static class RegisterCommonServices
 
         // services
         services.AddTransient<IAthletesUtilsService, AthletesUtilsService>();
+        services.AddTransient<IAthletesService, AthletesService>();
     }
 }
