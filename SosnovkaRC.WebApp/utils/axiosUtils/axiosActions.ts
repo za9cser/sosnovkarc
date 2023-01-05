@@ -62,7 +62,6 @@ const patch = async <T, V>(url: string, body: T) => {
 
 const deleteRequest = async <T>(url: string) => {
     try {
-        console.log("url", url);
         const response = await axios.delete<T>(url, CONFIG);
         return { isOk: true, data: response.data, error: null };
     } catch (error: any) {
