@@ -9,8 +9,8 @@ interface ApiService {
 }
 
 const getUrl = (url: string) => {
-    const fullUrl = new URL(process.env.REACT_APP_API_URL!!, url);
-    return `${fullUrl.origin}${fullUrl.href}`;
+    const fullUrl = new URL(url, process.env.REACT_APP_API_URL!!);
+    return fullUrl.href;
 };
 
 const get = <T>(url: string) => axiosActions.get<T>(getUrl(url));

@@ -18,7 +18,6 @@ const Athletes = ({ athletes }: AthletesModel) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const result = await athleteService.getAthletes();
 
-    console.log("data", result);
     return {
         props: {
             athletes: result.data,

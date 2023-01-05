@@ -3,7 +3,7 @@ using SosnovkaRC.BusinessLogic.Services;
 
 namespace SosnovkaRC.ServerApi.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/")]
 [ApiController]
 public class AthletesController : Controller
 {
@@ -14,14 +14,14 @@ public class AthletesController : Controller
         _athletesService = athletesService;
     }
 
-    [HttpGet("[controller]")]
+    [HttpGet]
     public async Task<IActionResult> GetAllAsync([FromQuery] bool includeLeaved = false)
     {
         var athletes = await _athletesService.GetAthletesAsync();
         return Ok(athletes);
     }
 
-    [HttpGet("[controller]/{id}")]
+    [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
         return Ok();
