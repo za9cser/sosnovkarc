@@ -9,8 +9,11 @@ type Response<T> = {
 export type { Response };
 
 interface AxiosActions {
-    getAsync: <T>(url: string) => Promise<Response<T>>;
-    postAsync: <T, V>(url: string, body: T) => Promise<Response<V>>;
+    get: <T>(url: string) => Promise<Response<T>>;
+    post: <T, V>(url: string, body: T) => Promise<Response<V>>;
+    put: <T, V>(url: string, body: T) => Promise<Response<V>>;
+    patch: <T, V>(url: string, body: T) => Promise<Response<V>>;
+    delete: <T>(url: string) => Promise<Response<T>>;
 }
 
 const CONFIG: AxiosRequestConfig = {
@@ -21,7 +24,7 @@ const CONFIG: AxiosRequestConfig = {
     },
 };
 
-const getAsync = async <T>(url: string) => {
+const get = async <T>(url: string) => {
     try {
         const response = await axios.get<T>(url, CONFIG);
         return { isOk: true, data: response.data, error: null };
@@ -30,7 +33,7 @@ const getAsync = async <T>(url: string) => {
     }
 };
 
-const postAsync = async <T, V>(url: string, body: T) => {
+const post = async <T, V>(url: string, body: T) => {
     try {
         const response = await axios.post<V>(url, body, CONFIG);
         return { isOk: true, data: response.data, error: null };
@@ -39,6 +42,34 @@ const postAsync = async <T, V>(url: string, body: T) => {
     }
 };
 
-const axiosActions: AxiosActions = { getAsync, postAsync };
+const put = async <T, V>(url: string, body: T) => {
+    try {
+        const response = await axios.put<V>(url, body, CONFIG);
+        return { isOk: true, data: response.data, error: null };
+    } catch (error: any) {
+        return { isOk: false, data: null, error: error };
+    }
+};
+
+const patch = async <T, V>(url: string, body: T) => {
+    try {
+        const response = await axios.patch<V>(url, body, CONFIG);
+        return { isOk: true, data: response.data, error: null };
+    } catch (error: any) {
+        return { isOk: false, data: null, error: error };
+    }
+};
+
+const deleteRequest = async <T>(url: string) => {
+    try {
+        console.log("url", url);
+        const response = await axios.delete<T>(url, CONFIG);
+        return { isOk: true, data: response.data, error: null };
+    } catch (error: any) {
+        return { isOk: false, data: null, error: error };
+    }
+};
+
+const axiosActions: AxiosActions = { get: get, post: post, put: put, patch: patch, delete: deleteRequest };
 
 export default axiosActions;

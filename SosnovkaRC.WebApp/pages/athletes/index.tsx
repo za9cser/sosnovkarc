@@ -1,20 +1,12 @@
 import { MDBRow } from "mdb-react-ui-kit";
 import { GetServerSideProps } from "next";
-
-type AthletesModel = {
-    athletes: [
-        {
-            id: number;
-            firstName: string;
-            lastName: string;
-        }
-    ];
-};
+import athleteService from "../../crud/athletesCRUD";
+import { AthletesModel } from "../../models/athletes/athlete";
 
 const Athletes = ({ athletes }: AthletesModel) => {
     return (
         <div>
-            {athletes.map(({ firstName, lastName }, key) => (
+            {athletes?.map(({ firstName, lastName }, key) => (
                 <MDBRow key={key}>
                     {firstName} {lastName}
                 </MDBRow>
@@ -24,9 +16,12 @@ const Athletes = ({ athletes }: AthletesModel) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const result = await athleteService.getAthletes();
+
+    console.log("data", result);
     return {
         props: {
-            athletes: null,
+            athletes: result.data,
         },
     };
 };

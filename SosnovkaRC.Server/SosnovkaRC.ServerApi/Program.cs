@@ -20,7 +20,7 @@ services.AddEntityFrameworkNpgsql().AddDbContext<SosnovkaContext>(options =>
         .EnableSensitiveDataLogging();
 });
 services.RegisterCommon(builder.Configuration, builder.Environment.EnvironmentName);
-services.AddControllers();
+services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
