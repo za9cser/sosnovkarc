@@ -5,13 +5,13 @@ import { AthletesModel } from "../../models/athletes/athlete";
 
 const Athletes = ({ athletes }: AthletesModel) => {
     return (
-        <div>
+        <>
             {athletes?.map(({ firstName, lastName }, key) => (
                 <MDBRow key={key}>
                     {firstName} {lastName}
                 </MDBRow>
             ))}
-        </div>
+        </>
     );
 };
 
