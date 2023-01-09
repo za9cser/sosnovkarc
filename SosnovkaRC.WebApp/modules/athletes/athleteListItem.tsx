@@ -1,7 +1,8 @@
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MDBCol, MDBRow } from "mdb-react-ui-kit";
+import { MDBCol } from "mdb-react-ui-kit";
+import { Desktop, Mobile } from "../../components/adaptiveMarkup";
 import { AthleteModel } from "../../models/athletes/athlete";
+import DesktopAthleteListitem from "./desktopAthleteListitem";
+import MobileAthleteListItem from "./mobileAthleteListItem";
 
 type Props = {
     athlete: AthleteModel;
@@ -10,13 +11,12 @@ type Props = {
 function AthleteListItem({ athlete }: Props) {
     return (
         <MDBCol center>
-            <div className="pt-1 border rounded hover-shadow">
-                <MDBRow center>
-                    <FontAwesomeIcon icon={faUser} size="10x" className="cursor-text" />
-                </MDBRow>
-                <MDBRow center>{athlete.lastName}</MDBRow>
-                <MDBRow center>{athlete.firstName}</MDBRow>
-            </div>
+            <Mobile>
+                <MobileAthleteListItem athlete={athlete} />
+            </Mobile>
+            <Desktop>
+                <DesktopAthleteListitem athlete={athlete} />
+            </Desktop>
         </MDBCol>
     );
 }

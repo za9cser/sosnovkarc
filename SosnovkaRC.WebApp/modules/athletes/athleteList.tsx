@@ -9,7 +9,7 @@ type Props = {
 function AthleteList({ athletes }: Props) {
     return (
         <MDBContainer>
-            <MDBRow className="g-3 row-cols-md-6 row-cols-1">
+            <MDBRow className="g-md-3 g-1 row-cols-md-6 row-cols-1">
                 {athletes.map((item) => (
                     <AthleteListItem athlete={item} key={item.id} />
                 ))}
